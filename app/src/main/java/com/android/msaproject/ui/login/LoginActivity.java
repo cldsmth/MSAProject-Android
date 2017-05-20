@@ -66,6 +66,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
 
     @Override
     public void onPreProcess() {
+        Utils.hideKeyboard(_this, getCurrentFocus());
         progress.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         progress.setCancelable(true);
         progress.setMessage("Login...");
@@ -75,12 +76,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
     @Override
     public void onSuccess(List<LoginData> data) {
         progress.dismiss();
-        System.out.println("====================");
-        System.out.println("User Id : " + data.get(0).getUserID());
-        System.out.println("First Name : " + data.get(0).getUserFname());
-        System.out.println("Last Name : " + data.get(0).getUserLname());
-        System.out.println("Phone : " + data.get(0).getUserPhone());
-        Utils.displayToast(_this, "Success", Toast.LENGTH_SHORT);
+        Utils.displayToast(_this, "Hello " + data.get(0).getUserFname(), Toast.LENGTH_SHORT);
     }
 
     @Override
