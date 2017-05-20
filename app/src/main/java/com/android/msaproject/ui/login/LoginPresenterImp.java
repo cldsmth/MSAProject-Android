@@ -3,7 +3,17 @@ package com.android.msaproject.ui.login;
 import android.app.Activity;
 import android.widget.Toast;
 
+import com.android.msaproject.api.UserAPI;
+import com.android.msaproject.api.data.LoginData;
+import com.android.msaproject.api.response.BaseArrayResponse;
+import com.android.msaproject.service.Retrofit;
 import com.android.msaproject.util.Utils;
+
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class LoginPresenterImp implements LoginPresenter {
 
@@ -32,15 +42,29 @@ public class LoginPresenterImp implements LoginPresenter {
 
     @Override
     public void submit(LoginModel model) {
-        System.out.println("======================");
-        System.out.println("User Id : " + model.getUserId());
-        System.out.println("Password : " + model.getPassword());
+        mView.onPreProcess();
+        if(Utils.haveNetworkConnection(mActivity)){
+            UserAPI service = Retrofit.setup().create(UserAPI.class);
+            Call<BaseArrayResponse<LoginData>> call = service.login(model.getUserId(), model.getPassword());
+            call.enqueue(new Callback<BaseArrayResponse<LoginData>>() {
+                @Override
+                public void onResponse(Call<BaseArrayResponse<LoginData>> call, Response<BaseArrayResponse<LoginData>> response) {
+                    String status = response.body().getStatus();
+                    if(status.equals("200")){
+                        List<LoginData> data = response.body().getData();
+                        mView.onSuccess(data);
+                    }else{
+                        mView.onFailed();
+                    }
+                }
 
-        Utils.displayToast(mActivity, "Submit", Toast.LENGTH_SHORT);
-        if(model.getUserId().equals("123456") && model.getPassword().equals("password")){
-            mView.onSuccess();
+                @Override
+                public void onFailure(Call<BaseArrayResponse<LoginData>> call, Throwable t) {
+                    mView.onFailed();
+                }
+            });
         }else{
-            mView.onFailed();
+            mView.onOffline();
         }
     }
 
