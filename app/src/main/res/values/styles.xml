@@ -1,11 +1,19 @@
 <resources>
 
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
+    <style name="MSAProjectThemeApp.Base" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
         <item name="colorPrimary">@color/colorPrimary</item>
+        <!-- warna gelap untuk status bar dan contextual app bars -->
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <!-- theme UI controls seperti checkboxes dan text fields e.g. FloatActionButton -->
         <item name="colorAccent">@color/colorAccent</item>
+        <!-- warna untuk Title Text  -->
+        <item name="android:textColorPrimary">@color/colorPrimaryText</item>
+        <!-- warna untuk menu overflow icon (tiga titik vertical) -->
+        <item name="android:textColorSecondary">@color/colorSecondaryText</item>
     </style>
+
+    <style name="MSAProjectThemeApp" parent="MSAProjectThemeApp.Base"></style>
 
 </resources>
