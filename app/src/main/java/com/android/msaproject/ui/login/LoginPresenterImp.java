@@ -1,11 +1,10 @@
 package com.android.msaproject.ui.login;
 
 import android.app.Activity;
-import android.widget.Toast;
 
 import com.android.msaproject.api.UserAPI;
 import com.android.msaproject.api.data.LoginData;
-import com.android.msaproject.api.response.BaseArrayResponse;
+import com.android.msaproject.api.response.ArrayResponse;
 import com.android.msaproject.service.Retrofit;
 import com.android.msaproject.util.Utils;
 
@@ -45,10 +44,10 @@ public class LoginPresenterImp implements LoginPresenter {
         mView.onPreProcess();
         if(Utils.haveNetworkConnection(mActivity)){
             UserAPI service = Retrofit.setup().create(UserAPI.class);
-            Call<BaseArrayResponse<LoginData>> call = service.login(model.getUserId(), model.getPassword());
-            call.enqueue(new Callback<BaseArrayResponse<LoginData>>() {
+            Call<ArrayResponse<LoginData>> call = service.login(model.getUserId(), model.getPassword());
+            call.enqueue(new Callback<ArrayResponse<LoginData>>() {
                 @Override
-                public void onResponse(Call<BaseArrayResponse<LoginData>> call, Response<BaseArrayResponse<LoginData>> response) {
+                public void onResponse(Call<ArrayResponse<LoginData>> call, Response<ArrayResponse<LoginData>> response) {
                     String status = response.body().getStatus();
                     if(status.equals("200")){
                         List<LoginData> data = response.body().getData();
@@ -59,7 +58,7 @@ public class LoginPresenterImp implements LoginPresenter {
                 }
 
                 @Override
-                public void onFailure(Call<BaseArrayResponse<LoginData>> call, Throwable t) {
+                public void onFailure(Call<ArrayResponse<LoginData>> call, Throwable t) {
                     mView.onFailed();
                 }
             });

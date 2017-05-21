@@ -11,6 +11,9 @@ import android.widget.Toast;
 
 import com.android.msaproject.R;
 import com.android.msaproject.api.data.LoginData;
+import com.android.msaproject.service.Preference;
+import com.android.msaproject.ui.dashboard.DashboardActivity;
+import com.android.msaproject.util.Const;
 import com.android.msaproject.util.Utils;
 
 import java.util.List;
@@ -23,6 +26,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
     private LoginActivity _this = this;
     private LoginModel model;
     private LoginPresenter presenter;
+    private Preference preference;
     private ProgressDialog progress;
 
     @Bind(R.id.input_text_user)
@@ -43,6 +47,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
         ButterKnife.bind(_this);
         model = new LoginModel();
         presenter = new LoginPresenterImp(this, _this);
+        preference = Preference.getInstance(_this);
         progress = new ProgressDialog(_this);
 
         btnSubmit.setOnClickListener(new View.OnClickListener() {
@@ -76,7 +81,15 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
     @Override
     public void onSuccess(List<LoginData> data) {
         progress.dismiss();
-        Utils.displayToast(_this, "Hello " + data.get(0).getUserFname(), Toast.LENGTH_SHORT);
+        Preference.User userPreference = new Preference(_this).new User();
+        userPreference.setUserId(data.get(0).getUserID());
+        userPreference.setFname(data.get(0).getUserFname());
+        userPreference.setLname(data.get(0).getUserLname());
+        userPreference.setPhone(data.get(0).getUserPhone());
+        userPreference.setAuthCode(data.get(0).getUserAuthCode());
+        preference.putObject(Const.PREFERENCE_KEY_USER, userPreference);
+        Utils.intent(_this, DashboardActivity.class);
+        _this.finish();
     }
 
     @Override
