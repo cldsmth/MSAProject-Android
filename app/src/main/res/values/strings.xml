@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">MSA Project</string>
+
+    <!-- START STRING DASHBOARD !-->
+    <string name="dashboard_text_status">Status\n\n%1$s</string>
+    <!-- END STRING DASHBOARD !-->
 </resources>
