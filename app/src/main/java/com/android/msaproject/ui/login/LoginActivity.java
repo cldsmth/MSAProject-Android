@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.android.msaproject.R;
 import com.android.msaproject.api.data.LoginData;
+import com.android.msaproject.model.Login;
 import com.android.msaproject.service.Preference;
 import com.android.msaproject.ui.dashboard.DashboardActivity;
 import com.android.msaproject.util.Const;
@@ -24,7 +25,7 @@ import butterknife.ButterKnife;
 public class LoginActivity extends AppCompatActivity implements LoginView {
 
     private LoginActivity _this = this;
-    private LoginModel model;
+    private Login login;
     private LoginPresenter presenter;
     private Preference preference;
     private ProgressDialog progress;
@@ -45,7 +46,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(_this);
-        model = new LoginModel();
+        login = new Login();
         presenter = new LoginPresenterImp(this, _this);
         preference = Preference.getInstance(_this);
         progress = new ProgressDialog(_this);
@@ -53,9 +54,9 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                model.setUserId(Utils.textInput(inputUser));
-                model.setPassword(Utils.textInput(inputPassword));
-                presenter.validate(model);
+                login.setUserId(Utils.textInput(inputUser));
+                login.setPassword(Utils.textInput(inputPassword));
+                presenter.validate(login);
             }
         });
     }
@@ -65,7 +66,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
         if (!valid) {
             return;
         } else {
-            presenter.submit(model);
+            presenter.submit(login);
         }
     }
 
@@ -87,6 +88,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
         userPreference.setLname(data.get(0).getUserLname());
         userPreference.setPhone(data.get(0).getUserPhone());
         userPreference.setAuthCode(data.get(0).getUserAuthCode());
+        userPreference.setCheckIn(false);
         preference.putObject(Const.PREFERENCE_KEY_USER, userPreference);
         Utils.intent(_this, DashboardActivity.class);
         _this.finish();

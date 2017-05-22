@@ -1,6 +1,6 @@
-package com.android.msaproject.ui.login;
+package com.android.msaproject.model;
 
-public class LoginModel {
+public class Login {
 
     private String userId;
     private String password;

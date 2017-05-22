@@ -27,8 +27,6 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
     private Preference.User userPreference;
     private ProgressDialog progress;
 
-    private boolean isCheck = false;
-
     @Bind(R.id.tv_user)
     TextView tvUser;
     @Bind(R.id.tv_status)
@@ -54,7 +52,8 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
         tvUser.setText(userPreference.getFname());
         tvStatus.setText(String.format(
                 getResources().getString(R.string.dashboard_text_status),
-                "Saat ini anda belum melakukan check in")
+                userPreference.isCheckIn() ? "Anda telah melakukan check in aplikasi"
+                        : "Saat ini anda belum melakukan check in")
         );
         cardViewCheckin.setOnClickListener(_this);
         cardViewAbout.setOnClickListener(_this);
@@ -66,7 +65,7 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.cardview_checkin:
-                if(isCheck){
+                if(userPreference.isCheckIn()){
                     Utils.displayToast(_this, "Anda sudah melakukan check in", Toast.LENGTH_SHORT);
                 }else{
                     progress.setProgressStyle(ProgressDialog.STYLE_SPINNER);
@@ -79,7 +78,8 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
                         @Override
                         public void run() {
                             progress.dismiss();
-                            isCheck = true;
+                            userPreference.setCheckIn(true);
+                            preference.putObject(Const.PREFERENCE_KEY_USER, userPreference);
                             tvStatus.setText(String.format(
                                     getResources().getString(R.string.dashboard_text_status),
                                     "Anda telah melakukan check in aplikasi")

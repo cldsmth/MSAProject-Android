@@ -67,6 +67,7 @@ public class Preference {
         private String lname;
         private String phone;
         private String authCode;
+        private boolean isCheckIn;
 
         public String getUserId() {
             return userId;
@@ -106,6 +107,14 @@ public class Preference {
 
         public void setAuthCode(String authCode) {
             this.authCode = authCode;
+        }
+
+        public boolean isCheckIn() {
+            return isCheckIn;
+        }
+
+        public void setCheckIn(boolean checkIn) {
+            isCheckIn = checkIn;
         }
 
     }

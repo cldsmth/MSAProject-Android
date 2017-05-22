@@ -1,12 +1,14 @@
 package com.android.msaproject.ui.login;
 
+import com.android.msaproject.model.Login;
+
 public interface LoginPresenter {
     /**
      * Validate
      */
-    void validate(LoginModel model);
+    void validate(Login login);
     /**
      * Submit
      */
-    void submit(LoginModel model);
+    void submit(Login login);
 }

@@ -5,6 +5,7 @@ import android.app.Activity;
 import com.android.msaproject.api.UserAPI;
 import com.android.msaproject.api.data.LoginData;
 import com.android.msaproject.api.response.ArrayResponse;
+import com.android.msaproject.model.Login;
 import com.android.msaproject.service.Retrofit;
 import com.android.msaproject.util.Utils;
 
@@ -25,13 +26,13 @@ public class LoginPresenterImp implements LoginPresenter {
     }
 
     @Override
-    public void validate(LoginModel model) {
+    public void validate(Login login) {
         boolean valid = true;
 
-        if (model.getUserId().isEmpty()) {
+        if (login.getUserId().isEmpty()) {
             valid = false;
             mView.onErrorEmptyUserId();
-        } else if (model.getPassword().isEmpty()) {
+        } else if (login.getPassword().isEmpty()) {
             valid = false;
             mView.onErrorEmptyPassword();
         }
@@ -40,11 +41,11 @@ public class LoginPresenterImp implements LoginPresenter {
     }
 
     @Override
-    public void submit(LoginModel model) {
+    public void submit(Login login) {
         mView.onPreProcess();
         if(Utils.haveNetworkConnection(mActivity)){
             UserAPI service = Retrofit.setup().create(UserAPI.class);
-            Call<ArrayResponse<LoginData>> call = service.login(model.getUserId(), model.getPassword());
+            Call<ArrayResponse<LoginData>> call = service.login(login.getUserId(), login.getPassword());
             call.enqueue(new Callback<ArrayResponse<LoginData>>() {
                 @Override
                 public void onResponse(Call<ArrayResponse<LoginData>> call, Response<ArrayResponse<LoginData>> response) {
