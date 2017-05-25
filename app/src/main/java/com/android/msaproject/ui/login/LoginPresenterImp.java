@@ -8,6 +8,7 @@ import com.android.msaproject.api.response.ObjectResponse;
 import com.android.msaproject.model.Login;
 import com.android.msaproject.service.Retrofit;
 import com.android.msaproject.util.Utils;
+import com.android.msaproject.util.Validation;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -27,10 +28,10 @@ public class LoginPresenterImp implements LoginPresenter {
     public void validate(Login login) {
         boolean valid = true;
 
-        if (login.getUserId().isEmpty()) {
+        if (!Validation.validateFields(login.getUserId())) {
             valid = false;
             mView.onErrorEmptyUserId();
-        } else if (login.getPassword().isEmpty()) {
+        } else if (!Validation.validateFields(login.getPassword())) {
             valid = false;
             mView.onErrorEmptyPassword();
         }

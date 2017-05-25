@@ -4,8 +4,6 @@ import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -19,6 +17,7 @@ import com.android.msaproject.util.Utils;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class LoginActivity extends AppCompatActivity implements LoginView {
 
@@ -28,16 +27,10 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
     private Preference preference;
     private ProgressDialog progress;
 
-    @Bind(R.id.input_text_user)
-    TextInputLayout errorUser;
-    @Bind(R.id.input_user)
-    EditText inputUser;
-    @Bind(R.id.input_text_password)
-    TextInputLayout errorPassword;
-    @Bind(R.id.input_password)
-    EditText inputPassword;
-    @Bind(R.id.btn_submit)
-    Button btnSubmit;
+    @Bind(R.id.input_text_user) TextInputLayout errorUser;
+    @Bind(R.id.input_user) EditText inputUser;
+    @Bind(R.id.input_text_password) TextInputLayout errorPassword;
+    @Bind(R.id.input_password) EditText inputPassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,15 +41,13 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
         presenter = new LoginPresenterImp(this, _this);
         preference = Preference.getInstance(_this);
         progress = new ProgressDialog(_this);
+    }
 
-        btnSubmit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                login.setUserId(Utils.textInput(inputUser));
-                login.setPassword(Utils.textInput(inputPassword));
-                presenter.validate(login);
-            }
-        });
+    @OnClick(R.id.btn_submit)
+    public void submit() {
+        login.setUserId(Utils.textInput(inputUser));
+        login.setPassword(Utils.textInput(inputPassword));
+        presenter.validate(login);
     }
 
     @Override
