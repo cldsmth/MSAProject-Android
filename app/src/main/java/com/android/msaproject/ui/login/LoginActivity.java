@@ -17,8 +17,6 @@ import com.android.msaproject.ui.dashboard.DashboardActivity;
 import com.android.msaproject.util.Const;
 import com.android.msaproject.util.Utils;
 
-import java.util.List;
-
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
@@ -80,14 +78,11 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
     }
 
     @Override
-    public void onSuccess(List<LoginData> data) {
+    public void onSuccess(LoginData data) {
         progress.dismiss();
         Preference.User userPreference = new Preference(_this).new User();
-        userPreference.setUserId(data.get(0).getUserID());
-        userPreference.setFname(data.get(0).getUserFname());
-        userPreference.setLname(data.get(0).getUserLname());
-        userPreference.setPhone(data.get(0).getUserPhone());
-        userPreference.setAuthCode(data.get(0).getUserAuthCode());
+        userPreference.setUserId(data.getIdUser());
+        userPreference.setName(data.getNameUser());
         userPreference.setCheckIn(false);
         preference.putObject(Const.PREFERENCE_KEY_USER, userPreference);
         Utils.intent(_this, DashboardActivity.class);

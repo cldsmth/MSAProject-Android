@@ -4,12 +4,10 @@ import android.app.Activity;
 
 import com.android.msaproject.api.UserAPI;
 import com.android.msaproject.api.data.LoginData;
-import com.android.msaproject.api.response.ArrayResponse;
+import com.android.msaproject.api.response.ObjectResponse;
 import com.android.msaproject.model.Login;
 import com.android.msaproject.service.Retrofit;
 import com.android.msaproject.util.Utils;
-
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -45,13 +43,15 @@ public class LoginPresenterImp implements LoginPresenter {
         mView.onPreProcess();
         if(Utils.haveNetworkConnection(mActivity)){
             UserAPI service = Retrofit.setup().create(UserAPI.class);
-            Call<ArrayResponse<LoginData>> call = service.login(login.getUserId(), login.getPassword());
-            call.enqueue(new Callback<ArrayResponse<LoginData>>() {
+            Call<ObjectResponse<LoginData>> call = service.login(login.getUserId(), login.getPassword());
+            System.out.println("Call : " + call.request().url());
+            call.enqueue(new Callback<ObjectResponse<LoginData>>() {
                 @Override
-                public void onResponse(Call<ArrayResponse<LoginData>> call, Response<ArrayResponse<LoginData>> response) {
+                public void onResponse(Call<ObjectResponse<LoginData>> call, Response<ObjectResponse<LoginData>> response) {
+                    System.out.println("Result : " + response.message());
                     String status = response.body().getStatus();
                     if(status.equals("200")){
-                        List<LoginData> data = response.body().getData();
+                        LoginData data = response.body().getData();
                         mView.onSuccess(data);
                     }else{
                         mView.onFailed();
@@ -59,7 +59,7 @@ public class LoginPresenterImp implements LoginPresenter {
                 }
 
                 @Override
-                public void onFailure(Call<ArrayResponse<LoginData>> call, Throwable t) {
+                public void onFailure(Call<ObjectResponse<LoginData>> call, Throwable t) {
                     mView.onFailed();
                 }
             });

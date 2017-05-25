@@ -2,8 +2,6 @@ package com.android.msaproject.ui.login;
 
 import com.android.msaproject.api.data.LoginData;
 
-import java.util.List;
-
 public interface LoginView {
     /**
      * Validate.
@@ -16,7 +14,7 @@ public interface LoginView {
     /**
      * Success.
      */
-    void onSuccess(List<LoginData> data);
+    void onSuccess(LoginData data);
     /**
      * Failed.
      */

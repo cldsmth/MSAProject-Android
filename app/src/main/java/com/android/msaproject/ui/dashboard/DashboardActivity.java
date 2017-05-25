@@ -49,7 +49,7 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
         userPreference = preference.getObject(Const.PREFERENCE_KEY_USER, Preference.User.class);
         progress = new ProgressDialog(_this);
 
-        tvUser.setText(userPreference.getFname());
+        tvUser.setText(userPreference.getName());
         tvStatus.setText(String.format(
                 getResources().getString(R.string.dashboard_text_status),
                 userPreference.isCheckIn() ? "Anda telah melakukan check in aplikasi"

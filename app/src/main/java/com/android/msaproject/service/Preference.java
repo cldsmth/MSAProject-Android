@@ -63,10 +63,7 @@ public class Preference {
     public class User {
 
         private String userId;
-        private String fname;
-        private String lname;
-        private String phone;
-        private String authCode;
+        private String name;
         private boolean isCheckIn;
 
         public String getUserId() {
@@ -77,36 +74,12 @@ public class Preference {
             this.userId = userId;
         }
 
-        public String getFname() {
-            return fname;
+        public String getName() {
+            return name;
         }
 
-        public void setFname(String fname) {
-            this.fname = fname;
-        }
-
-        public String getLname() {
-            return lname;
-        }
-
-        public void setLname(String lname) {
-            this.lname = lname;
-        }
-
-        public String getPhone() {
-            return phone;
-        }
-
-        public void setPhone(String phone) {
-            this.phone = phone;
-        }
-
-        public String getAuthCode() {
-            return authCode;
-        }
-
-        public void setAuthCode(String authCode) {
-            this.authCode = authCode;
+        public void setName(String name) {
+            this.name = name;
         }
 
         public boolean isCheckIn() {
