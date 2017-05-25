@@ -24,7 +24,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textColor="@color/colorWindowBackgroundWhite"
+                android:textColor="@color/white"
                 android:textSize="19sp"
                 android:text="Dashboard"/>
 
@@ -33,7 +33,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="8dp"
-                android:textColor="@color/colorWindowBackgroundWhite"
+                android:textColor="@color/white"
                 android:textSize="17sp"
                 android:text="Jimmy"/>
 
@@ -41,7 +41,7 @@
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:layout_marginRight="12dp"
-                android:src="@drawable/white_24_user"/>
+                android:src="@drawable/user_white_24dp"/>
 
         </LinearLayout>
 
@@ -56,7 +56,7 @@
         android:paddingTop="60dp"
         android:paddingBottom="90dp"
         android:gravity="center"
-        android:textColor="@color/colorWindowBackgroundWhite"
+        android:textColor="@color/white"
         android:textSize="22sp"
         android:text="Status\n\nSaat ini anda belum melakukan check in"/>
 
@@ -91,13 +91,13 @@
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:layout_marginBottom="12dp"
-                        android:src="@drawable/white_24_checked"/>
+                        android:src="@drawable/checked_white_24dp"/>
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:textColor="@color/colorWindowBackgroundWhite"
+                        android:textColor="@color/white"
                         android:textStyle="bold"
                         android:textSize="16sp"
                         android:text="CHECK IN"/>
@@ -125,13 +125,13 @@
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:layout_marginBottom="12dp"
-                        android:src="@drawable/white_24_about"/>
+                        android:src="@drawable/about_white_24dp"/>
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:textColor="@color/colorWindowBackgroundWhite"
+                        android:textColor="@color/white"
                         android:textStyle="bold"
                         android:textSize="16sp"
                         android:text="ABOUT"/>
@@ -168,13 +168,13 @@
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:layout_marginBottom="12dp"
-                        android:src="@drawable/white_24_settings"/>
+                        android:src="@drawable/settings_white_24dp"/>
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:textColor="@color/colorWindowBackgroundWhite"
+                        android:textColor="@color/white"
                         android:textStyle="bold"
                         android:textSize="16sp"
                         android:text="SETTING"/>
@@ -202,13 +202,13 @@
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:layout_marginBottom="12dp"
-                        android:src="@drawable/white_24_cancel"/>
+                        android:src="@drawable/cancel_white_24dp"/>
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:textColor="@color/colorWindowBackgroundWhite"
+                        android:textColor="@color/white"
                         android:textStyle="bold"
                         android:textSize="16sp"
                         android:text="CHECK OUT"/>

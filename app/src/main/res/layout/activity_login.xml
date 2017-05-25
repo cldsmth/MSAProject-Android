@@ -33,13 +33,13 @@
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp"
                 android:layout_marginBottom="10dp"
-                android:textColorHint="@color/colorWindowBackgroundWhite">
+                android:textColorHint="@color/white">
                 <EditText android:id="@+id/input_user"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:drawableLeft="@drawable/white_24_user"
+                    android:drawableLeft="@drawable/user_white_24dp"
                     android:drawablePadding="15dp"
-                    android:textColor="@color/colorWindowBackgroundWhite"
+                    android:textColor="@color/white"
                     android:textSize="19sp"
                     android:text=""
                     android:hint="User/ID Karyawan"
@@ -53,13 +53,13 @@
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp"
                 android:layout_marginBottom="20dp"
-                android:textColorHint="@color/colorWindowBackgroundWhite">
+                android:textColorHint="@color/white">
                 <EditText android:id="@+id/input_password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:drawableLeft="@drawable/white_24_lock"
+                    android:drawableLeft="@drawable/lock_white_24dp"
                     android:drawablePadding="15dp"
-                    android:textColor="@color/colorWindowBackgroundWhite"
+                    android:textColor="@color/white"
                     android:textSize="19sp"
                     android:text=""
                     android:hint="Password"
@@ -73,7 +73,7 @@
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp"
                 android:background="@drawable/custom_button_default"
-                android:textColor="@color/colorWindowBackgroundWhite"
+                android:textColor="@color/white"
                 android:textSize="19sp"
                 android:textAllCaps="false"
                 android:text="Login"/>
@@ -94,7 +94,7 @@
             android:padding="15dp"
             android:gravity="center"
             android:textSize="19sp"
-            android:textColor="@color/colorWindowBackgroundWhite"
+            android:textColor="@color/white"
             android:text="PT. BPR Madadi Sejahtera Abadi"/>
 
     </RelativeLayout>
